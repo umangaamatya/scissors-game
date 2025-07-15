@@ -33,7 +33,7 @@ To install and run the Scissors Game locally on your machine:
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/umangaamatya/scissors-game
    cd scissors-game
    ```
 
