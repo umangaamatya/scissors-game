@@ -1,38 +1,84 @@
-.App {
-  text-align: center;
-}
+/* App.css */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* Scissors slide animation (if needed) */
+@keyframes scissors-slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100vw); /* use full width for responsiveness */
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Optional custom ping animation */
+@keyframes custom-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Game container */
+.game-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Hair strand */
+.hair-strand {
+  position: absolute;
+  border-radius: 9999px;
+  width: 4px;
+  transform: translate(-50%, -50%);
+}
+
+/* Scissors */
+.scissors {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  transition: all 0.1s ease-out;
+  z-index: 10;
+}
+
+/* Particle */
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 9999px;
+}
+
+/* Instructions */
+.instruction {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .scissors {
+    width: 30px;
+    height: 30px;
+  }
+
+  .instruction {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .hair-strand {
+    width: 3px;
+  }
+
+  .score,
+  .lives {
+    font-size: 1rem;
   }
 }
