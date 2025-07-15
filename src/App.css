@@ -1,44 +1,22 @@
-/* App.css */
 
-/* Scissors slide animation (if needed) */
-@keyframes scissors-slide {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(100vw); /* use full width for responsiveness */
-  }
-}
-
-/* Optional custom ping animation */
-@keyframes custom-ping {
-  0% {
-    transform: scale(1);
-    opacity: 0.4;
-  }
-  100% {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-/* Game container */
 .game-container {
-  position: relative;
+ 
   width: 100vw;
   height: 100vh;
+  position: relative;
   overflow: hidden;
 }
 
-/* Hair strand */
+
 .hair-strand {
   position: absolute;
-  border-radius: 9999px;
   width: 4px;
+  border-radius: 9999px;
+  
   transform: translate(-50%, -50%);
 }
 
-/* Scissors */
+
 .scissors {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -46,7 +24,7 @@
   z-index: 10;
 }
 
-/* Particle */
+
 .particle {
   position: absolute;
   width: 3px;
@@ -54,14 +32,14 @@
   border-radius: 9999px;
 }
 
-/* Instructions */
+
 .instruction {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
   .scissors {
     width: 30px;
