@@ -77,8 +77,10 @@ const App = () => {
   useEffect(() => {
     if (gameState !== 'playing' || isCutting) return;
 
-    const speed = baseSpeed + level * 1;
-    const interval = setInterval(() => {
+    const speed = baseSpeed + level * 0.5; // Reduced speed multiplier for smoother movement
+    let animationId;
+    
+    const animate = () => {
       setScissors(prev => {
         let newY = prev.y + prev.direction * speed;
         let newDirection = prev.direction;
@@ -93,16 +95,28 @@ const App = () => {
 
         return { y: newY, direction: newDirection };
       });
-    }, 16);
+      
+      animationId = requestAnimationFrame(animate);
+    };
+    
+    animate();
 
-    return () => clearInterval(interval);
+    return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
   }, [gameState, level, windowHeight, isCutting]);
 
-  const performCut = useCallback((isSuccess) => {
+  const performCut = useCallback((isSuccess, clickY) => {
     setIsCutting(true);
+    
+    // Use click position if available, otherwise use scissors position
+    const cutPosition = clickY || scissors.y;
+    
     setCutAnimation({
       active: true,
-      startY: scissors.y,
+      startY: cutPosition,
       progress: 0
     });
 
@@ -123,13 +137,18 @@ const App = () => {
     }, 300);
   }, [scissors.y]);
 
-  const handleClick = useCallback(() => {
+  const handleClick = useCallback((e) => {
     if (gameState !== 'playing' || isCutting) return;
 
-    const diff = Math.abs(scissors.y - cutLineY);
-    const isSuccess = diff < 15;
-    performCut(isSuccess);
-  }, [scissors.y, cutLineY, gameState, isCutting, performCut]);
+    // Get the actual click position
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickY = e.clientY - rect.top;
+    
+    // Use the click position instead of scissors position for more responsive feel
+    const diff = Math.abs(clickY - cutLineY);
+    const isSuccess = diff < 25; // Slightly increased tolerance for better UX
+    performCut(isSuccess, clickY);
+  }, [cutLineY, gameState, isCutting, performCut]);
 
   // Heart component
   const Heart = ({ filled }) => (
