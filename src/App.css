@@ -1,49 +1,32 @@
+/* App.css */
 
 .game-container {
- 
   width: 100vw;
   height: 100vh;
   position: relative;
   overflow: hidden;
+  touch-action: manipulation; /* improves mobile tap responsiveness */
 }
-
-
-.hair-strand {
-  position: absolute;
-  width: 4px;
-  border-radius: 9999px;
-  
-  transform: translate(-50%, -50%);
-}
-
 
 .scissors {
   position: absolute;
   transform: translate(-50%, -50%);
-  transition: all 0.1s ease-out;
-  z-index: 10;
+  transition: top 0.05s ease-out;
+  z-index: 20;
 }
-
-
-.particle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  border-radius: 9999px;
-}
-
 
 .instruction {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.85);
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
-
 
 @media (max-width: 768px) {
   .scissors {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
   }
 
   .instruction {
@@ -51,12 +34,8 @@
     padding: 0.4rem 0.8rem;
   }
 
-  .hair-strand {
-    width: 3px;
-  }
-
   .score,
   .lives {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 }
